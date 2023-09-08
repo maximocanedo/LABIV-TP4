@@ -2,6 +2,8 @@ package menu;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -12,11 +14,13 @@ public class Menu extends JFrame{
 	private JButton ejercicio_1, ejercicio_2, ejercicio_3;
 	private NuestroLabel lblGrupo;
 	
+	
 	public Menu() {
 		initComponents();
 		initUi();
 		initListeners();
 		setVisible(true);
+		
 	}
 	
 	private void initListeners() {
@@ -41,6 +45,7 @@ public class Menu extends JFrame{
 		getContentPane().add(ejercicio_2);
 		getContentPane().add(ejercicio_3);
 		getContentPane().add(lblGrupo);
+		
 	}
 
 	public void initComponents() {
@@ -49,17 +54,21 @@ public class Menu extends JFrame{
 		ejercicio_2 = new JButton("Ejercicio 2");
 		ejercicio_3 = new JButton("Ejercicio 3");
 	}
+	
+	
 		
-	
-	
 ///es de prueba
-	public static void main(String[] args) {
-	Menu menu= new Menu();
-	
-	}
-	
+		public static void main(String[] args) {
+		Menu menu= new Menu();
+		
+		}
+		
+
 }
 
+
+	
+	
 class ListenerMenu implements ActionListener {
 	
 	JButton boton;
@@ -67,7 +76,8 @@ class ListenerMenu implements ActionListener {
 	public ListenerMenu() {
 		boton= null;
 	}
-	public ListenerMenu(JButton btn) {
+	public ListenerMenu(JButton btn ) {
+		
 		boton= btn;
 	}
 	
@@ -77,9 +87,11 @@ public void actionPerformed(ActionEvent arg0) {
 
 	switch(boton.getText()) {
 	case "Ejercicio 1": 
-		///comentar los system.out cuando hacemos las ventanas
-		System.out.println("1");
-		//Abrir ventana
+		
+		Ventana x = new Ventana(1);
+		x.cambiarVisibilidad(true);
+		
+			
 		break;
 	case "Ejercicio 2": 
 		System.out.println("2");
