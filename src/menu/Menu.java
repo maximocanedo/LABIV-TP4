@@ -79,6 +79,7 @@ class ListenerMenu implements ActionListener {
 	public ListenerMenu(JButton btn ) {
 		
 		boton= btn;
+		
 	}
 	
 
@@ -94,7 +95,9 @@ public void actionPerformed(ActionEvent arg0) {
 			
 		break;
 	case "Ejercicio 2": 
-		System.out.println("2");
+		Punto2 a = new Punto2();
+		a.setVisible(true);
+		
 		break;
 	case "Ejercicio 3": 
 		System.out.println("3");
@@ -104,6 +107,7 @@ public void actionPerformed(ActionEvent arg0) {
 	default:
 		break;
 	}
+	
 	
 }
 
