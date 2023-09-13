@@ -1,15 +1,13 @@
 package menu;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 
 public class Ventana extends JFrame {
 
@@ -91,9 +89,23 @@ public class Ventana extends JFrame {
                 String apellido = textField_1.getText();
                 String telefono = textField_2.getText();
                 String fechaNacimiento = textField_3.getText();
-
-                String datos = "Los datos ingresados fueron: " + nombre +" "+ apellido + ", " + telefono + ", " + fechaNacimiento;
+                
+                String datos= null;
+            	textField.setBackground(nombre.trim().isEmpty()? Color.RED:UIManager.getColor("TextField.background") );
+                textField_1.setBackground(apellido.trim().isEmpty()? Color.RED: UIManager.getColor("TextField.background"));
+                textField_2.setBackground(telefono.trim().isEmpty()? Color.RED: UIManager.getColor("TextField.background"));
+                textField_3.setBackground(fechaNacimiento.trim().isEmpty()? Color.RED: UIManager.getColor("TextField.background"));
+            
+                if((nombre.trim().isEmpty() || apellido.trim().isEmpty() || telefono.trim().isEmpty() || fechaNacimiento.trim().isEmpty())) {
+                	datos = "Los datos ingresados fueron: ";
+                }
+                else {
+                	datos = "Los datos ingresados fueron: " + nombre + " " + apellido + ", " + telefono + ", " + fechaNacimiento;
+                } 
+                
                 lblMostrar.setText(datos);
+                
+                
             }
         });
 		
