@@ -85,29 +85,19 @@ class ListenerMenu implements ActionListener {
 
 @Override
 public void actionPerformed(ActionEvent arg0) {
-
 	switch(boton.getText()) {
 	case "Ejercicio 1": 
-		
-		Ventana x = new Ventana(1);
-		x.cambiarVisibilidad(true);
-		
-			
+		Punto1.main(null);
 		break;
 	case "Ejercicio 2": 
-		Punto2 a = new Punto2();
-		a.setVisible(true);
-		
+		Punto2.main(null);
 		break;
 	case "Ejercicio 3": 
-		System.out.println("3");
-		
+		System.out.println("3");		
 		break;
-		
 	default:
 		break;
 	}
-	
 	
 }
 
