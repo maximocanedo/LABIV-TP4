@@ -91,6 +91,11 @@ public class Main extends JFrame {
 		panel_1.add(btnNewButton_2, "cell 1 0,alignx center,aligny center");
 		
 		JButton btnNewButton = new JButton("Segundo ejercicio");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SegundoEjercicio.main(null);
+			}
+		});
 		panel_1.add(btnNewButton, "cell 1 1,alignx center,aligny center");
 		
 		JButton btnNewButton_1 = new JButton("Tercer ejercicio");
