@@ -47,7 +47,7 @@ public class Punto1 extends JFrame {
 	public Punto1() {
 		super();
 		setSize(600,350);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocation(500,500);
 		setTitle("CONTACTOS");
 		contentPane = new JPanel();
