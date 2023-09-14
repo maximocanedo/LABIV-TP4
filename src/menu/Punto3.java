@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Component;
@@ -14,6 +15,13 @@ import javax.swing.Box;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Punto3 extends JFrame {
 
@@ -26,7 +34,7 @@ public class Punto3 extends JFrame {
 	private JPanel panelSistemaOperativo;
 	private JLabel lbElijaUnSistemaOperativo;
 	private JPanel panelEspecialidad;
-	private JTextField txtCantidadDeHorasFrenteAlOrdenador;
+	private JTextField txtCantidadDeHoras;
 	private JLabel lbElijaUnaEspecialidad;
 	private JPanel panelConCheckboxesEspecialidad;
 	private JRadioButton rdWindows;
@@ -43,6 +51,7 @@ public class Punto3 extends JFrame {
 	private JLabel lbCantidadDeHorasFrenteAlOrdenador;
 	private JCheckBox cbDiseñoGrafico;
 	private JCheckBox cbAdministracion;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
 	
 	
@@ -95,9 +104,12 @@ public class Punto3 extends JFrame {
 		lbElijaUnaEspecialidad = new JLabel("Elija una especialidad:");
 		panelConCheckboxesEspecialidad = new JPanel();
 		rdWindows = new JRadioButton("Windows");
+		buttonGroup.add(rdWindows);
 		horizontalGlue = Box.createHorizontalGlue();
 		rdMac = new JRadioButton("Mac");
+		buttonGroup.add(rdMac);
 		rdLinux = new JRadioButton("Linux");
+		buttonGroup.add(rdLinux);
 		horizontalGlue_1 = Box.createHorizontalGlue();
 		horizontalGlue_2 = Box.createHorizontalGlue();
 		horizontalGlue_3 = Box.createHorizontalGlue();
@@ -129,7 +141,8 @@ public class Punto3 extends JFrame {
 		panelSistemaOperativo.add(rdLinux, "cell 4 0,alignx left,aligny center");
 		
 		panelSistemaOperativo.add(horizontalGlue_1, "cell 5 0");
-		txtCantidadDeHorasFrenteAlOrdenador = new JTextField();
+		txtCantidadDeHoras = new JTextField();
+		
 
 		
 		contentPane.add(panelEspecialidad, "cell 0 1,grow");
@@ -153,8 +166,8 @@ public class Punto3 extends JFrame {
 		
 		panelHoras.add(lbCantidadDeHorasFrenteAlOrdenador, "cell 0 0,alignx trailing");
 		
-		panelHoras.add(txtCantidadDeHorasFrenteAlOrdenador, "cell 1 0,growx");
-		txtCantidadDeHorasFrenteAlOrdenador.setColumns(10);
+		panelHoras.add(txtCantidadDeHoras, "cell 1 0,growx");
+		txtCantidadDeHoras.setColumns(10);
 		
 		
 		
@@ -167,7 +180,51 @@ public class Punto3 extends JFrame {
 	}
 
 	private void initListeners() {
+		txtCantidadDeHoras.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				Validaciones.JtextFieldEsNumero(evt);
+				Validaciones.JtextFieldEsPositivo(evt);
+			}
+		});
 		
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String sistema = SistemaOperativoSeleccionado();
+				String especialidad = EspecialidadSeleccionada();
+					
+				JOptionPane.showMessageDialog(null, sistema + especialidad + " - "+txtCantidadDeHoras.getText() +"Hs");
+			}
+		});//fin btnaceptar
 	}
-
+	
+	
+	public String SistemaOperativoSeleccionado() {
+		
+		String sistema=null;
+		if(rdWindows.isSelected()) {
+			sistema=rdWindows.getText();
+		}
+		else if(rdMac.isSelected()) {
+			sistema=rdMac.getText();
+		}
+		else if(rdLinux.isSelected()) {
+			sistema=rdLinux.getText();
+		}
+		return sistema;
+	}
+	
+	public String EspecialidadSeleccionada() {
+		String seleccion="";
+		if(cbProgramacion.isSelected()) {
+			seleccion+=" - "+cbProgramacion.getText();
+		}
+		if(cbDiseñoGrafico.isSelected()) {
+			seleccion+=" - "+cbDiseñoGrafico.getText();
+		}
+		if(cbAdministracion.isSelected()) {
+			seleccion+=" - "+cbAdministracion.getText();
+		}
+		return seleccion;
+	}
 }
