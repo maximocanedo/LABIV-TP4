@@ -191,24 +191,21 @@ public class Punto2 extends JFrame {
 		
 		JButton btnNuevo = new JButton("Nuevo");
 		btnNuevo.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				textNota.setText("");
 				textNota2.setText("");
 				textNota_3.setText("");
-				textCondicion.setText("");
 				textPromedio.setText("");
+				textCondicion.setText("");				
 			}
-		});
+		});	
 		btnNuevo.setBounds(380, 151, 89, 30);
 		contentPane.add(btnNuevo);
 		
-		JButton btnSalir = new JButton("Salir");
+		JButton btnSalir = new JButton("Salir");		
 		btnSalir.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				Menu X=new Menu();
-				X.setVisible(true);
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 		btnSalir.setBounds(380, 187, 89, 30);
