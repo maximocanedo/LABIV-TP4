@@ -5,10 +5,13 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -77,6 +80,13 @@ public class Punto1 extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(20);
 		
+		textField_2.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent evt) {
+				Validaciones.JtextFieldEsNumero(evt);
+				Validaciones.JtextFieldEsPositivo(evt);
+			}
+		}); 
+		
 		JLabel lblTelefono = new JLabel("Fecha nacimiento: ");
 		lblTelefono.setBounds(61, 115, 120, 14);
 		contentPane.add(lblTelefono);
@@ -116,6 +126,11 @@ public class Punto1 extends JFrame {
                 } 
                 
                 lblMostrar.setText(datos);
+                
+                textField.setText("");
+                textField_1.setText("");
+                textField_2.setText("");
+                textField_3.setText("");
                 
                 
             }

@@ -8,14 +8,14 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Menu extends JFrame{
+public class Principal extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JButton ejercicio_1, ejercicio_2, ejercicio_3;
 	private NuestroLabel lblGrupo;
 	
 	
-	public Menu() {
+	public Principal() {
 		initComponents();
 		initUi();
 		initListeners();
@@ -57,7 +57,7 @@ public class Menu extends JFrame{
 	
 	
 		public static void main(String[] args) {
-		Menu menu= new Menu();
+		Principal principal= new Principal();
 		
 		}
 		

@@ -3,31 +3,53 @@ package menu;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 
 public class Punto2 extends JFrame {
 
-	private JPanel contentPane;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JTextField textNota;
 	private JTextField textNota2;
 	private JTextField textNota_3;
 	private JTextField textPromedio;
-	private JTextField textCondicion;
+	private JTextField textCondicion; 	
+	
+	private JPanel contentPane;
+	private JPanel recuadroNota = new JPanel();
+	private JPanel resultado = new JPanel();
+	
+	private JComboBox<Object> CbEstado = new JComboBox<Object>();
+	
+	private JButton btnCalcular = new JButton("Calcular");
+	private JButton btnNuevo = new JButton("Nuevo");
+	JButton btnSalir = new JButton("Salir");
+	
+	private JLabel lblNota1 = new JLabel("Nota 1");
+	private JLabel lblNota2 = new JLabel("Nota 2");
+	private JLabel lblNota3 = new JLabel("Nota 3");
+	private JLabel lblPromedio = new JLabel("Promedio");
+	private JLabel lblCondicion = new JLabel("Condicion");
+	private JLabel lblTps = new JLabel("TPS");
+	
+	
 
 	/**
 	 * Launch the application.
@@ -45,131 +67,141 @@ public class Punto2 extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Punto2() {
+		
+		initLayout();
+		initComponents();
+		initUi();
+		initListeners();
+		
+		this.dispose();
+				
+	}
+
+	private void initComponents() {
+		
+		textNota = new JTextField(10);
+		textNota2 = new JTextField(10);
+		textNota_3 = new JTextField(10);
+		
+		CbEstado.setModel(new DefaultComboBoxModel<Object>(new String[] {"Aprobado", "Desaprobado"}));
+		
+		textPromedio = new JTextField(10);
+		textPromedio.setEditable(false);
+		
+		textCondicion = new JTextField(10);
+		textCondicion.setEditable(false);
+		
+	}
+	private void initUi() {
+		Border bordeNota = BorderFactory.createTitledBorder("Notas del estudiante");
+		recuadroNota.setBounds(40, 49, 230, 188);
+		recuadroNota.setLayout(null);
+		recuadroNota.setBorder(bordeNota);
+		this.add(recuadroNota);
+		
+		CbEstado.setBounds(80, 130, 100, 20);
+		recuadroNota.add(CbEstado);
+		
+		lblNota1.setBounds(20, 30, 50, 20);
+		recuadroNota.add(lblNota1);
+		
+		lblNota2.setBounds(20, 60, 46, 20);
+		recuadroNota.add(lblNota2);
+		
+		lblNota3.setBounds(20, 90, 50, 20);
+		recuadroNota.add(lblNota3);
+		
+		textNota.setBounds(80, 30, 120, 20);
+		recuadroNota.add(textNota);
+		
+		textNota2.setBounds(80, 60, 120, 20);
+		recuadroNota.add(textNota2);
+		
+		textNota_3.setBounds(80, 90, 120, 20);
+		recuadroNota.add(textNota_3);
+		
+		lblTps.setBounds(20, 130, 50, 20);
+		recuadroNota.add(lblTps);
+		
+		resultado.setBounds(40, 260, 230, 140);
+		this.add(resultado);
+		resultado.setLayout(null);
+		resultado.setBorder(bordeNota);
+		
+		lblPromedio.setBounds(20, 50, 70, 20);
+		resultado.add(lblPromedio);
+		
+		lblCondicion.setBounds(20, 90, 70, 20);
+		resultado.add(lblCondicion);
+		
+		textPromedio.setBounds(80, 50, 120, 20);
+		resultado.add(textPromedio);
+		
+		textCondicion.setBounds(80, 90, 120, 20);
+		resultado.add(textCondicion);
+		
+		btnCalcular.setBounds(380, 110, 89, 30);
+		contentPane.add(btnCalcular);
+		
+		btnSalir.setBounds(380, 187, 89, 30);
+		contentPane.add(btnSalir);
+		
+		btnNuevo.setBounds(380, 151, 89, 30);
+		contentPane.add(btnNuevo);
+		
+	}
+
+
+	
+	private void initLayout() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 525, 411);
+		setBounds(100, 100, 525, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 221, 351, 135);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblPromedioEstudiante = new JLabel("Promedio Estudiante");
-		lblPromedioEstudiante.setBounds(10, 0, 113, 14);
-		panel.add(lblPromedioEstudiante);
-		
-		JLabel lblPromedio = new JLabel("Promedio");
-		lblPromedio.setBounds(58, 49, 65, 14);
-		panel.add(lblPromedio);
-		
-		JLabel lblCondicion = new JLabel("Condicion");
-		lblCondicion.setBounds(58, 88, 65, 14);
-		panel.add(lblCondicion);
-		
-		textPromedio = new JTextField();
-		textPromedio.setEditable(false);
-		textPromedio.setBounds(133, 46, 86, 20);
-		panel.add(textPromedio);
-		textPromedio.setColumns(10);
-		
-		textCondicion = new JTextField();
-		textCondicion.setEditable(false);
-		textCondicion.setBounds(133, 85, 86, 20);
-		panel.add(textCondicion);
-		textCondicion.setColumns(10);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 11, 351, 199);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		textNota = new JTextField();
+	}
+	
+	private void initListeners() {
 		textNota.addKeyListener(new KeyAdapter() {
-			@Override
 			public void keyTyped(KeyEvent evt) {
-				int k=(int)evt.getKeyChar();
-				if(k>=97 && k<=122||k>=65 && k<=90) {
-					evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-					JOptionPane.showInternalMessageDialog(null, "No puede ingresar letras!!","Validando Datos",JOptionPane.ERROR_MESSAGE);
-				}
+				Validaciones.JtextFieldEsNumero(evt);
+				Validaciones.JtextFieldEsPositivo(evt);
 			}
-		});
-		textNota.setBounds(121, 29, 86, 20);
-		panel_1.add(textNota);
-		textNota.setColumns(10);
-		
-		JLabel lblExamenes = new JLabel("Examenes");
-		lblExamenes.setBounds(127, 4, 49, 14);
-		panel_1.add(lblExamenes);
-		
-		JLabel lblNota_1 = new JLabel("Nota 1");
-		lblNota_1.setBounds(65, 32, 46, 14);
-		panel_1.add(lblNota_1);
-		
-		JLabel lblNota_2 = new JLabel("Nota 2");
-		lblNota_2.setBounds(65, 68, 46, 14);
-		panel_1.add(lblNota_2);
-		
-		JLabel lblNota_3 = new JLabel("Nota 3");
-		lblNota_3.setBounds(65, 100, 46, 14);
-		panel_1.add(lblNota_3);
-		
-		textNota_3 = new JTextField();
+		}); 
 		textNota_3.addKeyListener(new KeyAdapter() {
-			@Override
 			public void keyTyped(KeyEvent evt) {
-				int k=(int)evt.getKeyChar();
-				if(k>=97 && k<=122||k>=65 && k<=90) {
-					evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-					JOptionPane.showInternalMessageDialog(null, "No puede ingresar letras!!","Validando Datos",JOptionPane.ERROR_MESSAGE);
-				}
+				Validaciones.JtextFieldEsNumero(evt);
+				Validaciones.JtextFieldEsPositivo(evt);
 			}
-		});
-		textNota_3.setBounds(121, 97, 86, 20);
-		panel_1.add(textNota_3);
-		textNota_3.setColumns(10);
+		}); 
 		
-		textNota2 = new JTextField();
+		
 		textNota2.addKeyListener(new KeyAdapter() {
-			@Override
 			public void keyTyped(KeyEvent evt) {
-				int k=(int)evt.getKeyChar();
-				if(k>=97 && k<=122||k>=65 && k<=90) {
-					evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-					JOptionPane.showInternalMessageDialog(null, "No puede ingresar letras!!","Validando Datos",JOptionPane.ERROR_MESSAGE);
-				}
+				Validaciones.JtextFieldEsNumero(evt);
+				Validaciones.JtextFieldEsPositivo(evt);
 			}
-		});
-		textNota2.setBounds(121, 65, 86, 20);
-		panel_1.add(textNota2);
-		textNota2.setColumns(10);
+		}); 
 		
-		JLabel lblNotaEstudiante = new JLabel("Nota Estudiante");
-		lblNotaEstudiante.setBounds(10, 0, 85, 14);
-		panel_1.add(lblNotaEstudiante);
-		
-		JLabel lblTps = new JLabel("TPS");
-		lblTps.setBounds(65, 151, 46, 14);
-		panel_1.add(lblTps);
-		
-		JComboBox CbEstado = new JComboBox();
-		CbEstado.setModel(new DefaultComboBoxModel(new String[] {"Aprobado", "Desaprobado"}));
-		CbEstado.setBounds(121, 148, 86, 20);
-		panel_1.add(CbEstado);
-		
-		JButton btnCalcular = new JButton("Calcular");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				float Nota1=Float.parseFloat(textNota.getText());
 				float Nota2=Float.parseFloat(textNota2.getText());
 				float Nota3=Float.parseFloat(textNota_3.getText());
+				
+				if(Nota1>10 ||Nota2>10||Nota3>10) {
+					JOptionPane.showMessageDialog(null, "No se puede ingresar valores mayores a 10!!","Validando Datos",JOptionPane.ERROR_MESSAGE);
+					textNota.setText("");
+					textNota2.setText("");
+					textNota_3.setText("");
+					textPromedio.setText("");
+					textCondicion.setText("");		
+					return;
+				}
+				
 				float promedio=(Nota1+Nota2+Nota3)/3;
 				String dato=CbEstado.getSelectedItem().toString();
 				textPromedio.setText(String.valueOf(promedio));
@@ -190,10 +222,7 @@ public class Punto2 extends JFrame {
 				}
 			}
 		});
-		btnCalcular.setBounds(380, 110, 89, 30);
-		contentPane.add(btnCalcular);
 		
-		JButton btnNuevo = new JButton("Nuevo");
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textNota.setText("");
@@ -203,17 +232,14 @@ public class Punto2 extends JFrame {
 				textCondicion.setText("");				
 			}
 		});	
-		btnNuevo.setBounds(380, 151, 89, 30);
-		contentPane.add(btnNuevo);
 		
-		JButton btnSalir = new JButton("Salir");		
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(380, 187, 89, 30);
-		contentPane.add(btnSalir);
-		this.dispose();
+		
+		
+		
 	}
 }
