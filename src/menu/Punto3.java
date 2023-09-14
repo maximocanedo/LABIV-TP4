@@ -23,28 +23,29 @@ public class Punto3 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
-	private JPanel panelSistemaOperativo = new JPanel();
-	private JLabel lbElijaUnSistemaOperativo = new JLabel("Elija un sistema operativo:");
-	private JPanel panelEspecialidad = new JPanel();
+	private JPanel panelSistemaOperativo;
+	private JLabel lbElijaUnSistemaOperativo;
+	private JPanel panelEspecialidad;
 	private JTextField txtCantidadDeHorasFrenteAlOrdenador;
-	private JLabel lbElijaUnaEspecialidad = new JLabel("Elija una especialidad:");
-	private JPanel panelConCheckboxesEspecialidad = new JPanel();
-	private JRadioButton rdWindows = new JRadioButton("Windows");
-	private Component horizontalGlue = Box.createHorizontalGlue();
-	private JRadioButton rdMac = new JRadioButton("Mac");
-	private JRadioButton rdLinux = new JRadioButton("Linux");
-	private Component horizontalGlue_1 = Box.createHorizontalGlue();
-	private Component horizontalGlue_2 = Box.createHorizontalGlue();
-	private Component horizontalGlue_3 = Box.createHorizontalGlue();
-	private JCheckBox cbProgramacion = new JCheckBox("Programaci\u00F3n");
-	private JPanel panelAceptar = new JPanel();
-	private JButton btnAceptar = new JButton("Aceptar");
-	private JPanel panelHoras = new JPanel();
-	private JLabel lbCantidadDeHorasFrenteAlOrdenador = new JLabel("Cantidad de horas frente al ordenador:");
-	private JCheckBox cbDiseñoGrafico = new JCheckBox("Dise\u00F1o Gr\u00E1fico");
-	private JCheckBox cbAdministracion = new JCheckBox("Administraci\u00F3n");
-
-
+	private JLabel lbElijaUnaEspecialidad;
+	private JPanel panelConCheckboxesEspecialidad;
+	private JRadioButton rdWindows;
+	private Component horizontalGlue;
+	private JRadioButton rdMac;
+	private JRadioButton rdLinux;
+	private Component horizontalGlue_1;
+	private Component horizontalGlue_2 ;
+	private Component horizontalGlue_3;
+	private JCheckBox cbProgramacion;
+	private JPanel panelAceptar;
+	private JButton btnAceptar;
+	private JPanel panelHoras;
+	private JLabel lbCantidadDeHorasFrenteAlOrdenador;
+	private JCheckBox cbDiseñoGrafico;
+	private JCheckBox cbAdministracion;
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -88,12 +89,30 @@ public class Punto3 extends JFrame {
 	}
 
 	private void initComponents() {
-
+		panelSistemaOperativo = new JPanel();
+		lbElijaUnSistemaOperativo = new JLabel("Elija un sistema operativo:");
+		panelEspecialidad = new JPanel();
+		lbElijaUnaEspecialidad = new JLabel("Elija una especialidad:");
+		panelConCheckboxesEspecialidad = new JPanel();
+		rdWindows = new JRadioButton("Windows");
+		horizontalGlue = Box.createHorizontalGlue();
+		rdMac = new JRadioButton("Mac");
+		rdLinux = new JRadioButton("Linux");
+		horizontalGlue_1 = Box.createHorizontalGlue();
+		horizontalGlue_2 = Box.createHorizontalGlue();
+		horizontalGlue_3 = Box.createHorizontalGlue();
+		cbProgramacion = new JCheckBox("Programaci\u00F3n");
+		panelAceptar = new JPanel();
+		btnAceptar = new JButton("Aceptar");
+		panelHoras = new JPanel();
+		lbCantidadDeHorasFrenteAlOrdenador = new JLabel("Cantidad de horas frente al ordenador:");
+		cbDiseñoGrafico = new JCheckBox("Dise\u00F1o Gr\u00E1fico");
+		cbAdministracion = new JCheckBox("Administraci\u00F3n");
 		
 	}
 
 	private void initUi() {
-contentPane.add(panelSistemaOperativo, "cell 0 0,grow");
+		contentPane.add(panelSistemaOperativo, "cell 0 0,grow");
 		
 		panelSistemaOperativo.setLayout(new MigLayout("", "[][126px][69px][45px][51px][]", "[23px,grow]"));
 		
