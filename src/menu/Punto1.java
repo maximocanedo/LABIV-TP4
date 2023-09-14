@@ -1,6 +1,7 @@
 package menu;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 public class Punto1 extends JFrame {
@@ -25,10 +27,7 @@ public class Punto1 extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+	public static void abrirVentana() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,12 +39,9 @@ public class Punto1 extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
+	 
 	public Punto1() {
-		super();
+		super();		
 		setSize(600,350);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocation(500,500);
@@ -105,12 +101,27 @@ public class Punto1 extends JFrame {
                 String telefono = textField_2.getText();
                 String fechaNacimiento = textField_3.getText();
 
-                String datos = "Los datos ingresados fueron: " + nombre +" "+ apellido + ", " + telefono + ", " + fechaNacimiento;
+                
+                String datos= null;
+                textField.setBackground(nombre.trim().isEmpty()? Color.RED:UIManager.getColor("TextField.background") );
+                textField_1.setBackground(apellido.trim().isEmpty()? Color.RED: UIManager.getColor("TextField.background"));
+                textField_2.setBackground(telefono.trim().isEmpty()? Color.RED: UIManager.getColor("TextField.background"));
+                textField_3.setBackground(fechaNacimiento.trim().isEmpty()? Color.RED: UIManager.getColor("TextField.background"));
+            
+                if((nombre.trim().isEmpty() || apellido.trim().isEmpty() || telefono.trim().isEmpty() || fechaNacimiento.trim().isEmpty())) {
+                    datos = "Los datos ingresados fueron: ";
+                }
+                else {
+                    datos = "Los datos ingresados fueron: " + nombre + " " + apellido + ", " + telefono + ", " + fechaNacimiento;
+                } 
+                
                 lblMostrar.setText(datos);
+                
+                
             }
         });
-		
-		this.dispose();
-	}
+        
+        this.dispose();
+    }
 }
 

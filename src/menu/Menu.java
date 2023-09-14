@@ -56,8 +56,6 @@ public class Menu extends JFrame{
 	}
 	
 	
-		
-///es de prueba
 		public static void main(String[] args) {
 		Menu menu= new Menu();
 		
@@ -85,17 +83,19 @@ class ListenerMenu implements ActionListener {
 
 @Override
 public void actionPerformed(ActionEvent arg0) {
+	
 	switch(boton.getText()) {
 	case "Ejercicio 1": 
-		Punto1.main(null);
+		Punto1.abrirVentana();
 		break;
 	case "Ejercicio 2": 
-		Punto2.main(null);
+		Punto2.abrirVentana();;
 		break;
 	case "Ejercicio 3": 
-		System.out.println("3");		
+		Punto3.abrirVentana();	
 		break;
 	default:
+		
 		break;
 	}
 	
