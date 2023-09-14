@@ -173,6 +173,10 @@ public class Punto2 extends JFrame {
 				float promedio=(Nota1+Nota2+Nota3)/3;
 				String dato=CbEstado.getSelectedItem().toString();
 				textPromedio.setText(String.valueOf(promedio));
+				/* Este código se hizo así y así, porque de hacerse como pedía la consigna daba 
+				 * error cuando dos de las notas eran >= 8 y alguna era < 8. Así que en vez de tomar las tres 
+				 * notas por separado ahora tomamos el promedio para calcular la condición del alumno
+				 * , como lo detalló el profe en el foro de dudas ( <INSERTE LINK al mensaje del profe> ). */
 				if(Nota1<6 ||Nota2<6||Nota3<6||dato.equalsIgnoreCase("Desaprobado")) {
 					textCondicion.setText("Libre");
 				}
