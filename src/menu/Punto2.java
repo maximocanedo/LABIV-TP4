@@ -2,28 +2,23 @@ package menu;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 
 public class Punto2 extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private JTextField textNota;
@@ -155,71 +150,100 @@ public class Punto2 extends JFrame {
 
 	
 	private void initLayout() {
+		this.setSize(new Dimension(525,450));
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setTitle("Promedio");
+		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 525, 450);
+		
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 	}
 	
 	private void initListeners() {
-		textNota.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent evt) {
-				Validaciones.JtextFieldEsNumero(evt);
-				Validaciones.JtextFieldEsPositivo(evt);
+		textNota.addFocusListener(new FocusAdapter() {
+			
+			public void focusLost(FocusEvent evt) {
+				
+				boolean comprobar = (!(textNota.getText().isEmpty())) ? true : false;
+				
+				if(comprobar) {
+					if(!Validaciones.verificarNumero(textNota.getText())) {
+						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 1 SE PONDRÁ EN BLANCO.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+						textNota.requestFocus();
+						textNota.setText("");					
+					}					
+				}								
 			}
 		}); 
-		textNota_3.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent evt) {
-				Validaciones.JtextFieldEsNumero(evt);
-				Validaciones.JtextFieldEsPositivo(evt);
-			}
-		}); 
-		
-		
-		textNota2.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent evt) {
-				Validaciones.JtextFieldEsNumero(evt);
-				Validaciones.JtextFieldEsPositivo(evt);
+		textNota_3.addFocusListener(new FocusAdapter() {
+			
+			public void focusLost(FocusEvent evt) {
+				boolean comprobar = (!(textNota_3.getText().isEmpty())) ? true : false;
+				
+				if(comprobar) {
+					if(!Validaciones.verificarNumero(textNota_3.getText())) {
+						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 3 SE PONDRÁ EN BLANCO.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+						textNota_3.requestFocus();
+						textNota_3.setText("");					
+					}					
+				}								
+			}			
+		}); 		
+		textNota2.addFocusListener(new FocusAdapter() {
+			
+			public void focusLost(FocusEvent evt) {
+				boolean comprobar = (!(textNota2.getText().isEmpty())) ? true : false;
+				
+				if(comprobar) {
+					if(!Validaciones.verificarNumero(textNota2.getText())) {
+						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 2 SE PONDRÁ EN BLANCO.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+						textNota2.requestFocus();
+						textNota2.setText("");					
+					}					
+				}				
 			}
 		}); 
 		
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				float Nota1=Float.parseFloat(textNota.getText());
-				float Nota2=Float.parseFloat(textNota2.getText());
-				float Nota3=Float.parseFloat(textNota_3.getText());
 				
-				if(Nota1>10 ||Nota2>10||Nota3>10) {
-					JOptionPane.showMessageDialog(null, "No se puede ingresar valores mayores a 10!!","Validando Datos",JOptionPane.ERROR_MESSAGE);
-					textNota.setText("");
-					textNota2.setText("");
-					textNota_3.setText("");
-					textPromedio.setText("");
-					textCondicion.setText("");		
-					return;
+				if(textNota.getText().isEmpty() || textNota2.getText().isEmpty() || textNota_3.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "LOS CAMPOS DE NOTA NO PUEDEN ESTAR VACÍOS.\n\nDEBE INGRESAR TODAS LAS CALIFICACIONES PARA CALCULAR EL PROMEDIO DEL ALUMNO", "INGRESO DE NOTAS INCORRECTO", JOptionPane.ERROR_MESSAGE);				
+				}else{
+					
+					boolean NOTAS_VALIDAS = (Float.parseFloat(textNota.getText()) > 0 && Float.parseFloat(textNota2.getText()) > 0 && Float.parseFloat(textNota_3.getText()) > 0) ? true : false;
+					
+					if(NOTAS_VALIDAS) {
+						float Nota1=Float.parseFloat(textNota.getText());
+						float Nota2=Float.parseFloat(textNota2.getText());
+						float Nota3=Float.parseFloat(textNota_3.getText());
+															
+						float promedio=(Nota1+Nota2+Nota3)/3;
+						String dato=CbEstado.getSelectedItem().toString();
+						textPromedio.setText(String.valueOf(promedio));
+						/* Este código se hizo así y así, porque de hacerse como pedía la consigna daba 
+						 * error cuando dos de las notas eran >= 8 y alguna era < 8. Así que en vez de tomar las tres 
+						 * notas por separado ahora tomamos el promedio para calcular la condición del alumno
+						 * , como lo detalló el profe en el foro de dudas ( <INSERTE LINK al mensaje del profe> ). */
+						if(Nota1<6 ||Nota2<6||Nota3<6||dato.equalsIgnoreCase("Desaprobado")) {
+							textCondicion.setText("Libre");
+						}
+						else {
+							if(Nota1>=8 && Nota2>=8 && Nota3>=8) {
+								textCondicion.setText("Promocionado");
+							}
+							else{
+								textCondicion.setText("Regular");
+							}
+						}					
+					}					
 				}
-				
-				float promedio=(Nota1+Nota2+Nota3)/3;
-				String dato=CbEstado.getSelectedItem().toString();
-				textPromedio.setText(String.valueOf(promedio));
-				/* Este código se hizo así y así, porque de hacerse como pedía la consigna daba 
-				 * error cuando dos de las notas eran >= 8 y alguna era < 8. Así que en vez de tomar las tres 
-				 * notas por separado ahora tomamos el promedio para calcular la condición del alumno
-				 * , como lo detalló el profe en el foro de dudas ( <INSERTE LINK al mensaje del profe> ). */
-				if(Nota1<6 ||Nota2<6||Nota3<6||dato.equalsIgnoreCase("Desaprobado")) {
-					textCondicion.setText("Libre");
-				}
-				else {
-					if(Nota1>=8 && Nota2>=8 && Nota3>=8) {
-					textCondicion.setText("Promocionado");
-					}
-					else{
-					textCondicion.setText("Regular");
-					}
-				}
+					
+								
 			}
 		});
 		

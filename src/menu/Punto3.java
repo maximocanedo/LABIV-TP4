@@ -1,63 +1,45 @@
 package menu;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import net.miginfocom.swing.MigLayout;
-import java.awt.Component;
-import javax.swing.Box;
+import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
-
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+
 
 public class Punto3 extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
-	private JPanel panelSistemaOperativo;
-	private JLabel lbElijaUnSistemaOperativo;
-	private JPanel panelEspecialidad;
-	private JTextField txtCantidadDeHoras;
-	private JLabel lbElijaUnaEspecialidad;
-	private JPanel panelConCheckboxesEspecialidad;
-	private JRadioButton rdWindows;
-	private Component horizontalGlue;
-	private JRadioButton rdMac;
-	private JRadioButton rdLinux;
-	private Component horizontalGlue_1;
-	private Component horizontalGlue_2 ;
-	private Component horizontalGlue_3;
-	private JCheckBox cbProgramacion;
-	private JPanel panelAceptar;
+	private JRadioButton rdbtnWin;
+	private JRadioButton rdbtnMac;
+	private JRadioButton rdbtnLinux;
+	private JCheckBox chckbxProg;
+	private JCheckBox chckbxAdmin;
+	private JCheckBox chckbxDisen;
+	private JTextField txtHoras;
 	private JButton btnAceptar;
-	private JPanel panelHoras;
-	private JLabel lbCantidadDeHorasFrenteAlOrdenador;
-	private JCheckBox cbDiseñoGrafico;
-	private JCheckBox cbAdministracion;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JPanel panel1;
+	private JPanel panel2;
+	private JLabel lblTexto;
+	private JLabel lblElijeUnaEspecialidad;
+	private JLabel lblCantidadDeHoras;
 	
 	
-	
-	/**
-	 * Launch the application.
-	 */
 	public static void abrirVentana() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -71,120 +53,114 @@ public class Punto3 extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Punto3() {
 		initLayout();
 		initComponents();
 		initUi();
-		initListeners();
-		
-		
-		
-		
+		initListeners();		
 	}
 
 	private void initLayout() {
-
-		setTitle("Tercer ejercicio");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		
+		this.setSize(new Dimension(490,340));
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setTitle("Selección múltiple");
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[424px]", "[62px][62px][62px][62px]"));
+		contentPane.setLayout(null);
 		
 	}
 
 	private void initComponents() {
-		panelSistemaOperativo = new JPanel();
-		lbElijaUnSistemaOperativo = new JLabel("Elija un sistema operativo:");
-		panelEspecialidad = new JPanel();
-		lbElijaUnaEspecialidad = new JLabel("Elija una especialidad:");
-		panelConCheckboxesEspecialidad = new JPanel();
-		rdWindows = new JRadioButton("Windows");
-		buttonGroup.add(rdWindows);
-		horizontalGlue = Box.createHorizontalGlue();
-		rdMac = new JRadioButton("Mac");
-		buttonGroup.add(rdMac);
-		rdLinux = new JRadioButton("Linux");
-		buttonGroup.add(rdLinux);
-		horizontalGlue_1 = Box.createHorizontalGlue();
-		horizontalGlue_2 = Box.createHorizontalGlue();
-		horizontalGlue_3 = Box.createHorizontalGlue();
-		cbProgramacion = new JCheckBox("Programaci\u00F3n");
-		panelAceptar = new JPanel();
-		btnAceptar = new JButton("Aceptar");
-		panelHoras = new JPanel();
-		lbCantidadDeHorasFrenteAlOrdenador = new JLabel("Cantidad de horas frente al ordenador:");
-		cbDiseñoGrafico = new JCheckBox("Dise\u00F1o Gr\u00E1fico");
-		cbAdministracion = new JCheckBox("Administraci\u00F3n");
 		
+		panel1 = new JPanel();
+		lblTexto = new JLabel("Elije un sistema operativo");				
+		rdbtnWin = new JRadioButton("Windows",true);				
+		rdbtnMac = new JRadioButton("Mac",false);		
+		rdbtnLinux = new JRadioButton("Linux",false);
+		
+		
+		ButtonGroup grupoRadioBtn = new ButtonGroup();
+		grupoRadioBtn.add(rdbtnWin);
+		grupoRadioBtn.add(rdbtnMac);
+		grupoRadioBtn.add(rdbtnLinux);		
+		
+		panel2 = new JPanel();		
+		
+		lblElijeUnaEspecialidad = new JLabel("Elije una especialidad");		
+		
+		chckbxProg = new JCheckBox("Programaci\u00F3n");		
+		
+		chckbxAdmin = new JCheckBox("Administraci\u00F3n");
+				
+		chckbxDisen = new JCheckBox("Dise\u00F1o Gr\u00E1fico");
+				
+		lblCantidadDeHoras = new JLabel("Cantidad de horas en el computador: ");		
+		
+		txtHoras = new JTextField(10);				
+		
+		btnAceptar = new JButton("Aceptar");
+				
 	}
 
 	private void initUi() {
-		contentPane.add(panelSistemaOperativo, "cell 0 0,grow");
 		
-		panelSistemaOperativo.setLayout(new MigLayout("", "[][126px][69px][45px][51px][]", "[23px,grow]"));
+		Border bordeLinea = new LineBorder(Color.BLACK,2,true);
 		
-		panelSistemaOperativo.add(horizontalGlue, "cell 0 0");
+		panel1.setBounds(10, 11, 454, 62);
+		panel1.setBorder(bordeLinea);
+		contentPane.add(panel1);
+		panel1.setLayout(null);
 		
+		lblTexto.setBounds(25, 22, 156, 14);
+		panel1.add(lblTexto);
 		
-		panelSistemaOperativo.add(lbElijaUnSistemaOperativo, "cell 1 0,alignx left,aligny center");
+		rdbtnWin.setBounds(204, 18, 91, 23);
+		panel1.add(rdbtnWin);
 		
-		panelConCheckboxesEspecialidad.add(cbProgramacion);
-		panelSistemaOperativo.add(rdWindows, "cell 2 0,alignx left,growy");
+		rdbtnMac.setBounds(297, 18, 56, 23);
+		panel1.add(rdbtnMac);
 		
-		panelSistemaOperativo.add(rdMac, "cell 3 0,growx,aligny center");
+		rdbtnLinux.setBounds(370, 18, 56, 23);
+		panel1.add(rdbtnLinux);
 		
-		panelSistemaOperativo.add(rdLinux, "cell 4 0,alignx left,aligny center");
+		panel2.setBounds(10, 81, 454, 103);
+		panel2.setBorder(bordeLinea);
+		contentPane.add(panel2);
+		panel2.setLayout(null);
 		
-		panelSistemaOperativo.add(horizontalGlue_1, "cell 5 0");
-		txtCantidadDeHoras = new JTextField();
+		lblElijeUnaEspecialidad.setBounds(27, 43, 122, 14);
+		panel2.add(lblElijeUnaEspecialidad);
 		
-
+		chckbxProg.setBounds(211, 7, 135, 23);
+		panel2.add(chckbxProg);
 		
-		contentPane.add(panelEspecialidad, "cell 0 1,grow");
-		panelEspecialidad.setLayout(new MigLayout("", "[][][][grow]", "[100px,grow]"));
+		chckbxAdmin.setBounds(211, 39, 135, 23);
+		panel2.add(chckbxAdmin);
 		
-		panelEspecialidad.add(horizontalGlue_2, "cell 0 0");
+		chckbxDisen.setBounds(211, 73, 135, 23);
+		panel2.add(chckbxDisen);
 		
+		lblCantidadDeHoras.setBounds(35, 214, 221, 14);
+		contentPane.add(lblCantidadDeHoras);
 		
-		panelEspecialidad.add(lbElijaUnaEspecialidad, "cell 1 0");
+		txtHoras.setBounds(266, 211, 86, 20);
+		contentPane.add(txtHoras);
 		
-		panelEspecialidad.add(horizontalGlue_3, "cell 2 0");
-		
-		
-		panelEspecialidad.add(panelConCheckboxesEspecialidad, "cell 3 0,grow");
-		panelConCheckboxesEspecialidad.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		panelConCheckboxesEspecialidad.add(cbAdministracion);
-		panelConCheckboxesEspecialidad.add(cbDiseñoGrafico);
-		contentPane.add(panelHoras, "cell 0 2,grow");
-		panelHoras.setLayout(new MigLayout("", "[][grow]", "[100px,grow]"));
-		
-		panelHoras.add(lbCantidadDeHorasFrenteAlOrdenador, "cell 0 0,alignx trailing");
-		
-		panelHoras.add(txtCantidadDeHoras, "cell 1 0,growx");
-		txtCantidadDeHoras.setColumns(10);
-		
-		
-		
-		contentPane.add(panelAceptar, "cell 0 3,grow");
-		panelAceptar.setLayout(new MigLayout("", "[71px,grow]", "[23px,grow]"));
-		
-		
-		panelAceptar.add(btnAceptar, "cell 0 0,alignx center,aligny center");
-		
+		btnAceptar.setBounds(302, 260, 89, 23);
+		contentPane.add(btnAceptar);		
 	}
 
 	private void initListeners() {
-		txtCantidadDeHoras.addKeyListener(new KeyAdapter() {
+		txtHoras.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent evt) {
 				Validaciones.JtextFieldEsNumero(evt);
-				Validaciones.JtextFieldEsPositivo(evt);
+				Validaciones.JtextFieldEsPositivo(evt);				
 			}
 		});
 		
@@ -193,37 +169,37 @@ public class Punto3 extends JFrame {
 				String sistema = SistemaOperativoSeleccionado();
 				String especialidad = EspecialidadSeleccionada();
 					
-				JOptionPane.showMessageDialog(null, sistema + especialidad + " - "+txtCantidadDeHoras.getText() +"Hs");
+				JOptionPane.showMessageDialog(null, sistema + especialidad + " - "+txtHoras.getText() +"Hs");
 			}
-		});//fin btnaceptar
+		});
 	}
 	
 	
 	public String SistemaOperativoSeleccionado() {
 		
 		String sistema=null;
-		if(rdWindows.isSelected()) {
-			sistema=rdWindows.getText();
+		if(rdbtnWin.isSelected()) {
+			sistema=rdbtnWin.getText();
 		}
-		else if(rdMac.isSelected()) {
-			sistema=rdMac.getText();
+		else if(rdbtnMac.isSelected()) {
+			sistema=rdbtnMac.getText();
 		}
-		else if(rdLinux.isSelected()) {
-			sistema=rdLinux.getText();
+		else if(rdbtnLinux.isSelected()) {
+			sistema=rdbtnLinux.getText();
 		}
 		return sistema;
 	}
 	
 	public String EspecialidadSeleccionada() {
 		String seleccion="";
-		if(cbProgramacion.isSelected()) {
-			seleccion+=" - "+cbProgramacion.getText();
+		if(chckbxProg.isSelected()) {
+			seleccion+=" - "+chckbxProg.getText();
 		}
-		if(cbDiseñoGrafico.isSelected()) {
-			seleccion+=" - "+cbDiseñoGrafico.getText();
+		if(chckbxDisen.isSelected()) {
+			seleccion+=" - "+chckbxDisen.getText();
 		}
-		if(cbAdministracion.isSelected()) {
-			seleccion+=" - "+cbAdministracion.getText();
+		if(chckbxAdmin.isSelected()) {
+			seleccion+=" - "+chckbxAdmin.getText();
 		}
 		return seleccion;
 	}

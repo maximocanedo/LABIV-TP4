@@ -1,28 +1,22 @@
 package menu;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
+
 
 public class Punto1 extends JFrame {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
@@ -44,11 +38,13 @@ public class Punto1 extends JFrame {
 	}
 	 
 	public Punto1() {
-		super();		
-		setSize(600,350);
+		this.setSize(new Dimension(600,350));
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setTitle("Contactos");
+		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLocation(500,500);
-		setTitle("CONTACTOS");
+		
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -83,7 +79,7 @@ public class Punto1 extends JFrame {
 		textField_2.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent evt) {
 				Validaciones.JtextFieldEsNumero(evt);
-				Validaciones.JtextFieldEsPositivo(evt);
+				Validaciones.JtextFieldEsPositivo(evt);				
 			}
 		}); 
 		

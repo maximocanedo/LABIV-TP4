@@ -2,9 +2,8 @@ package menu;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -32,9 +31,13 @@ public class Principal extends JFrame{
 
 	private void initUi() {
 		
-		setBounds(400,400, 600, 400);
-		setTitle("");
+		this.setSize(new Dimension(600,400));
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setTitle("TRABAJO PRÁCTICO Nº 4");
+		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().setLayout(null);
 		ejercicio_1.setBounds(220, 100, 100, 30);
@@ -49,7 +52,7 @@ public class Principal extends JFrame{
 	}
 
 	public void initComponents() {
-		lblGrupo = new NuestroLabel("GRUPO NRO: 4");
+		lblGrupo = new NuestroLabel("GRUPO NRO: 3");
 		ejercicio_1 = new JButton("Ejercicio 1");
 		ejercicio_2 = new JButton("Ejercicio 2");
 		ejercicio_3 = new JButton("Ejercicio 3");
@@ -57,8 +60,7 @@ public class Principal extends JFrame{
 	
 	
 		public static void main(String[] args) {
-		Principal principal= new Principal();
-		
+			new Principal();		
 		}
 		
 
