@@ -76,11 +76,11 @@ public class Punto2 extends JFrame {
 	private void initComponents() {
 		
 		textNota = new JTextField(10);
-		textNota.setText("0");
+		textNota.setText("");
 		textNota2 = new JTextField(10);
-		textNota2.setText("0");
+		textNota2.setText("");
 		textNota_3 = new JTextField(10);
-		textNota_3.setText("0");
+		textNota_3.setText("");
 		
 		CbEstado.setModel(new DefaultComboBoxModel<Object>(new String[] {"Aprobado", "Desaprobado"}));
 		
@@ -175,9 +175,9 @@ public class Punto2 extends JFrame {
 				
 				if(comprobar) {
 					if(!Validaciones.verificarNumero(textNota.getText())) {
-						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 1 SE PONDRÁ EN 0.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 1.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
 						textNota.requestFocus();
-						textNota.setText("0");					
+						textNota.setText("");					
 					}					
 				}								
 			}
@@ -189,9 +189,9 @@ public class Punto2 extends JFrame {
 				
 				if(comprobar) {
 					if(!Validaciones.verificarNumero(textNota_3.getText())) {
-						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 3 SE PONDRÁ EN 0.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 3.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
 						textNota_3.requestFocus();
-						textNota_3.setText("0");					
+						textNota_3.setText("");					
 					}					
 				}								
 			}			
@@ -203,9 +203,9 @@ public class Punto2 extends JFrame {
 				
 				if(comprobar) {
 					if(!Validaciones.verificarNumero(textNota2.getText())) {
-						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 2 SE PONDRÁ EN 0.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 2.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
 						textNota2.requestFocus();
-						textNota2.setText("0");					
+						textNota2.setText("");					
 					}					
 				}				
 			}
@@ -243,7 +243,9 @@ public class Punto2 extends JFrame {
 						}					
 					}					
 				}
-					
+				textNota.setText("");	
+				textNota2.setText("");	
+				textNota_3.setText("");	
 								
 			}
 		});
