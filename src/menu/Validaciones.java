@@ -28,7 +28,7 @@ public class Validaciones {
 		boolean NUMERO_VALIDO = true;
 		
 		try {
-			if(Float.parseFloat(cadenaNumero) <= 1.0f || Float.parseFloat(cadenaNumero) > 10.0f) {
+			if(Float.parseFloat(cadenaNumero) < 1.0f || Float.parseFloat(cadenaNumero) > 10.0f) {
 				NUMERO_VALIDO=false;
 			}
 		}catch(Exception e) {
