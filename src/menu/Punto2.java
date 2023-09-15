@@ -76,8 +76,11 @@ public class Punto2 extends JFrame {
 	private void initComponents() {
 		
 		textNota = new JTextField(10);
+		textNota.setText("0");
 		textNota2 = new JTextField(10);
+		textNota2.setText("0");
 		textNota_3 = new JTextField(10);
+		textNota_3.setText("0");
 		
 		CbEstado.setModel(new DefaultComboBoxModel<Object>(new String[] {"Aprobado", "Desaprobado"}));
 		
@@ -93,7 +96,7 @@ public class Punto2 extends JFrame {
 		recuadroNota.setBounds(40, 49, 230, 188);
 		recuadroNota.setLayout(null);
 		recuadroNota.setBorder(bordeNota);
-		this.add(recuadroNota);
+		getContentPane().add(recuadroNota);
 		
 		CbEstado.setBounds(80, 130, 100, 20);
 		recuadroNota.add(CbEstado);
@@ -120,7 +123,7 @@ public class Punto2 extends JFrame {
 		recuadroNota.add(lblTps);
 		
 		resultado.setBounds(40, 260, 230, 140);
-		this.add(resultado);
+		getContentPane().add(resultado);
 		resultado.setLayout(null);
 		resultado.setBorder(bordeNota);
 		
@@ -172,9 +175,9 @@ public class Punto2 extends JFrame {
 				
 				if(comprobar) {
 					if(!Validaciones.verificarNumero(textNota.getText())) {
-						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 1 SE PONDRÁ EN BLANCO.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 1 SE PONDRÁ EN 0.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
 						textNota.requestFocus();
-						textNota.setText("");					
+						textNota.setText("0");					
 					}					
 				}								
 			}
@@ -186,9 +189,9 @@ public class Punto2 extends JFrame {
 				
 				if(comprobar) {
 					if(!Validaciones.verificarNumero(textNota_3.getText())) {
-						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 3 SE PONDRÁ EN BLANCO.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 3 SE PONDRÁ EN 0.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
 						textNota_3.requestFocus();
-						textNota_3.setText("");					
+						textNota_3.setText("0");					
 					}					
 				}								
 			}			
@@ -200,9 +203,9 @@ public class Punto2 extends JFrame {
 				
 				if(comprobar) {
 					if(!Validaciones.verificarNumero(textNota2.getText())) {
-						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 2 SE PONDRÁ EN BLANCO.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "NO ES UN NÚMERO VÁLIDO.\nEL CAMPO PARA INGRESAR LA NOTA 2 SE PONDRÁ EN 0.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
 						textNota2.requestFocus();
-						textNota2.setText("");					
+						textNota2.setText("0");					
 					}					
 				}				
 			}
@@ -225,10 +228,8 @@ public class Punto2 extends JFrame {
 						float promedio=(Nota1+Nota2+Nota3)/3;
 						String dato=CbEstado.getSelectedItem().toString();
 						textPromedio.setText(String.valueOf(promedio));
-						/* Este código se hizo así y así, porque de hacerse como pedía la consigna daba 
-						 * error cuando dos de las notas eran >= 8 y alguna era < 8. Así que en vez de tomar las tres 
-						 * notas por separado ahora tomamos el promedio para calcular la condición del alumno
-						 * , como lo detalló el profe en el foro de dudas ( <INSERTE LINK al mensaje del profe> ). */
+						/* Este código se hizo de esta forma porque  la consigna era ambigua. Así que en vez de tomar las tres 
+						 * notas por separado ahora tomamos el promedio para calcular la condición del alumno. */
 						if(Nota1<6 ||Nota2<6||Nota3<6||dato.equalsIgnoreCase("Desaprobado")) {
 							textCondicion.setText("Libre");
 						}
@@ -249,9 +250,9 @@ public class Punto2 extends JFrame {
 		
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textNota.setText("");
-				textNota2.setText("");
-				textNota_3.setText("");
+				textNota.setText("0");
+				textNota2.setText("0");
+				textNota_3.setText("0");
 				textPromedio.setText("");
 				textCondicion.setText("");				
 			}

@@ -102,6 +102,7 @@ public class Punto3 extends JFrame {
 		lblCantidadDeHoras = new JLabel("Cantidad de horas en el computador: ");		
 		
 		txtHoras = new JTextField(10);				
+		txtHoras.setText("0");
 		
 		btnAceptar = new JButton("Aceptar");
 				
@@ -168,8 +169,13 @@ public class Punto3 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String sistema = SistemaOperativoSeleccionado();
 				String especialidad = EspecialidadSeleccionada();
-					
+				if(especialidad=="") {
+					JOptionPane.showMessageDialog(null, "DEBE SELECCIONAR AL MENOS 1 ESPECIALIDAD.", "INGRESO DE NOTA INCORRECTO", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				else {
 				JOptionPane.showMessageDialog(null, sistema + especialidad + " - "+txtHoras.getText() +"Hs");
+				}
 			}
 		});
 	}
